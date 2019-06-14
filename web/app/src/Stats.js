@@ -17,7 +17,7 @@ function Title(props) {
     );
 }
 
-export default function Stats() {
+export default function Stats({ stars, forks, repo_name }) {
     return (
         <React.Fragment>
             <Title>Github Stats</Title>
@@ -29,6 +29,18 @@ export default function Stats() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
+                    <TableRow>
+                        <TableCell>Repo Name</TableCell>
+                        <TableCell>{repo_name}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>Stars</TableCell>
+                        <TableCell>{stars}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>Forks</TableCell>
+                        <TableCell>{forks}</TableCell>
+                    </TableRow>
                 </TableBody>
             </Table>
         </React.Fragment>

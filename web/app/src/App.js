@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Stats from './Stats';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,7 +63,23 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function App() {
+//export default function App() {
+const App = () => {
+
+  const [data, setData] = useState({ resp: {} });
+
+  useEffect(async () => {
+    //window.location.href
+    const owner = "facebook";
+    const repo = "react";
+    axios
+      .get(`api/stats/${owner}/${repo}`)
+      .then(({ data }) => {
+        console.log(data);
+        setData(data);
+      });
+  }, []);
+
   const classes = useStyles();
   return (
     <div className={classes.toolbar}>
@@ -80,7 +98,7 @@ export default function App() {
             {/* GitHub Details*/}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Stats />
+                <Stats repo_name={data.name} forks={data.forks_count} stars={data.stargazers_count} />
               </Paper>
             </Grid>
           </Grid>
@@ -89,3 +107,5 @@ export default function App() {
     </div >
   );
 }
+
+export default App;
