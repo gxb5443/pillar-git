@@ -23,7 +23,7 @@ the python api out horizontally and let nginx load balance.
 ### Design Issues
 
 Due to time constraints this app only looks up the stats for the (hardcoded)
-facebook/react repo. Due to a production issue at the time of writing this I was
+*facebook/react* repo. Due to a production issue at the time of writing this I was
 unable to make it interactive via web client. Another issue is the auth flow
 should be cleaner: you shouldn't have to first navigate to the login page
 manually, the system should manage basic routing. (I struggled a bit with
